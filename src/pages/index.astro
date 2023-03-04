@@ -1,4 +1,5 @@
 ---
+import Footer from '../components/Footer';
 import GameSection from '../components/GameSection';
 import Layout from '../layouts/Layout.astro';
 ---
@@ -10,33 +11,5 @@ import Layout from '../layouts/Layout.astro';
   <main class='text-center flex flex-col gap-6'>
     <GameSection client:load />
   </main>
-  <footer class='fixed bottom-0 right-0 left-0 m-auto py-2'>
-    <p class='text-center text-gray-500 text-sm'>
-      Imágenes pixeladas con <a
-        href='https://cloudinary.com/'
-        target='_blank'
-        rel='noreferer'
-        class='underline'>Cloudinary</a
-      >. Pistas por <a
-        href='https://wikipedia.com/'
-        target='_blank'
-        rel='noreferer'
-        class='underline'>Wikipedia</a
-      >
-    </p>
-    <p class='text-center text-gray-500 text-sm'>
-      Hecho con <a
-        href='https://astro.build/'
-        target='_blank'
-        rel='noreferer'
-        class='underline'>Astro</a
-      > por
-      <a
-        href='https://github.com/joaquinarias989'
-        class='font-bold text-gray-400'
-      >
-        Joaquín Arias 🙍🏽‍♂️
-      </a>
-    </p>
-  </footer>
+  <Footer />
 </Layout>

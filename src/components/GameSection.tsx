@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import IconChevronRight from './icons/IconChevronRight';
-import Idea from './Clue';
 import SkeletonCelebrityImage from './skeletons/SkeletonCelebrityImage';
 import SkeletonOption from './skeletons/SkeletonOption';
+import Clue from './Clue';
 
 type Celebrity = {
   name: string;
@@ -126,7 +126,7 @@ export default function GameSection() {
         </div>
         <div className='flex items-center justify-center max-w-2xl m-auto text-lg'>
           {pickedOption == null ? (
-            <Idea celebrity={celebrity?.name} />
+            <Clue celebrity={celebrity?.name} />
           ) : (
             <button
               className='flex items-center text-[#55E6C1] py-2'

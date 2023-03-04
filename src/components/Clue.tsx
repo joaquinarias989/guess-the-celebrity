@@ -37,10 +37,10 @@ export default function Clue({ celebrity }: { celebrity: string | undefined }) {
       <span className='text-[#55E6C1] font-bold'>Pista:</span> {clue}
     </p>
   ) : (
-    <>
+    <div className='flex items-center justify-center gap-2 flex-wrap'>
       <span className='text-gray-100'>¿Ninguna idea?</span>
       <button
-        className='text-[#55E6C1] font-bold py-2 pl-2 flex items-center gap-1 group'
+        className='text-[#55E6C1] font-bold flex items-center gap-1 group'
         onClick={handleClue}
       >
         Dame una pista{' '}
@@ -48,6 +48,6 @@ export default function Clue({ celebrity }: { celebrity: string | undefined }) {
           className={'animate-pulse group-hover:animate-bounce transition-all'}
         />
       </button>
-    </>
+    </div>
   );
 }
