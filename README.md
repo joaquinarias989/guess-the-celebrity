@@ -37,7 +37,7 @@ yarn install
 ultra install
 ```
 
-5. Ready 🥳
+4. Ready 🥳
 
 <p></p>
 
