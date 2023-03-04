@@ -125,7 +125,9 @@ export default function GameSection() {
           </picture>
         </div>
         <div className='flex items-center justify-center max-w-2xl m-auto text-lg'>
-          {pickedOption == null ? (
+          {loading ? (
+            <span className='bg-slate-700 w-60 h-4 rounded-lg'></span>
+          ) : pickedOption == null ? (
             <Clue celebrity={celebrity?.name} />
           ) : (
             <button
