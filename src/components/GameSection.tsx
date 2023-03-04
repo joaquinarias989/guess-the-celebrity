@@ -1,54 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import IconChevronRight from './icons/IconChevronRight';
 import SkeletonCelebrityImage from './skeletons/SkeletonCelebrityImage';
 import SkeletonOption from './skeletons/SkeletonOption';
 import Clue from './Clue';
-
-type Celebrity = {
-  name: string;
-  image: string;
-};
-
-type Option = {
-  name: string;
-  isCorrect: boolean;
-};
-
-const stringToSnakeCase = (str: string) => {
-  const strClean = str.replace('-', '');
-
-  return strClean
-    .split(' ')
-    .map((word) => word.toLowerCase())
-    .join('_');
-};
-
-const getRandomCelebrity = async () => {
-  const response = await fetch('/data/celebrities.json');
-  const data = await response.json();
-  const randomCelebrity =
-    data.celebrities[Math.floor(Math.random() * data.celebrities.length)];
-  return {
-    name: randomCelebrity,
-    image: data.image.url + stringToSnakeCase(randomCelebrity) + '.webp',
-  };
-};
-
-const getRandomOptionsInclude = async (name: string) => {
-  const response = await fetch('/data/celebrities.json');
-  const data = await response.json();
-  const randomOptions = data.celebrities
-    .filter((celebr: string) => celebr !== name)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3);
-  return [
-    { name, isCorrect: true },
-    ...randomOptions.map((celebr: string) => ({
-      name: celebr,
-      isCorrect: false,
-    })),
-  ].sort(() => Math.random() - 0.5);
-};
+import {
+  getRandomCelebrity,
+  getRandomOptionsInclude,
+} from '../services/game.service';
 
 const optionCorrectClasses =
   'text-green-500 border-b-green-500 hover:text-green-500 animate-pulse-zoom hover:scale-100';
@@ -61,7 +19,8 @@ export default function GameSection() {
   const [options, setOptions] = useState<Array<Option>>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [pickedOption, setPickedOption] = useState<Option | null>(null);
-  const [quantityPlayed, setQuantityPlayed] = useState<number>(0);
+  const [score, setScore] = useState<Score>({ hits: 0, misses: 0 });
+  const [countPlayed, setCountPlayed] = useState<number>(0);
 
   useEffect(() => {
     setLoading(true);
@@ -72,18 +31,32 @@ export default function GameSection() {
         setLoading(false);
       });
     });
+  }, [countPlayed]);
 
-    // return () => {};
-  }, [quantityPlayed]);
+  const handlePickOption = (option: Option) => {
+    setPickedOption(option);
+    setScore((prevScore) => {
+      if (option.isCorrect) {
+        return {
+          hits: prevScore.hits + 1,
+          misses: prevScore.misses,
+        };
+      } else {
+        return {
+          hits: prevScore.hits,
+          misses: prevScore.misses + 1,
+        };
+      }
+    });
+  };
 
   const handleNext = () => {
     setPickedOption(null);
-    setQuantityPlayed(quantityPlayed + 1);
+    setCountPlayed((prevCountPlayed) => prevCountPlayed + 1);
   };
 
   return (
     <>
-      <p className='text-xl text-gray-100'>¿Quién es la persona de debajo?</p>
       <div className='space-y-10'>
         <ol className='flex justify-center items-center flex-wrap gap-6 list-[upper-latin] list-inside text-white'>
           {loading ? (
@@ -103,7 +76,7 @@ export default function GameSection() {
                   type='button'
                   disabled={pickedOption != null}
                   className={`py-2 px-3`}
-                  onClick={() => setPickedOption(option)}
+                  onClick={() => handlePickOption(option)}
                 >
                   {option.name}
                 </button>
@@ -117,8 +90,10 @@ export default function GameSection() {
               <SkeletonCelebrityImage />
             ) : (
               <img
-                src={celebrity?.image}
-                alt='Celebrity'
+                src={
+                  pickedOption != null ? celebrity?.image : celebrity?.imageBlur
+                }
+                alt={`Celebridad ${celebrity?.name}`}
                 className='w-full h-full object-cover border-2 border-dashed border-[#55E6C1] shadow-2xl rounded cursor-crosshair aspect-square'
               />
             )}
@@ -130,12 +105,25 @@ export default function GameSection() {
           ) : pickedOption == null ? (
             <Clue celebrity={celebrity?.name} />
           ) : (
-            <button
-              className='flex items-center text-[#55E6C1] py-2'
-              onClick={handleNext}
-            >
-              Siguiente <IconChevronRight />
-            </button>
+            <div className='space-y-2 md:space-y-0'>
+              <button
+                className='flex items-center justify-center text-[#55E6C1] gap-1 md:py-2 group w-full'
+                onClick={handleNext}
+              >
+                Siguiente{' '}
+                <IconChevronRight
+                  className={
+                    'group-hover:translate-x-2 group-hover:scale-110 transition-all'
+                  }
+                />
+              </button>
+              <p className='text-gray-100'>
+                Acertaste{' '}
+                <span className='text-green-500 font-bold'>{score.hits}</span> y
+                fallaste{' '}
+                <span className='text-red-500 font-bold'>{score.misses}</span>
+              </p>
+            </div>
           )}
         </div>
       </div>

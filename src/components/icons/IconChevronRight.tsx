@@ -1,4 +1,9 @@
-export default function IconChevronRight() {
+export type Props = {
+  className?: string;
+  size?: number;
+};
+
+export default function IconChevronRight(props: Props) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -6,7 +11,9 @@ export default function IconChevronRight() {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className='w-6 h-6'
+      className={`${props.size != undefined ? props.size : 'w-6 h-6'} ${
+        props.className
+      }`}
     >
       <path
         strokeLinecap='round'
