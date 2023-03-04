@@ -1,5 +1,5 @@
 ---
-import IconLightBlub from '../components/icons/IconLightBlub.astro';
+import GameSection from '../components/GameSection';
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -8,57 +8,35 @@ import Layout from '../layouts/Layout.astro';
     <h1 class='text-6xl font-bold text-[#55E6C1]'>Adivina la celebridad</h1>
   </header>
   <main class='text-center flex flex-col gap-6'>
-    <p class='text-xl text-gray-100'>¿Quién es la persona de debajo?</p>
-    <div class='space-y-10'>
-      <ol
-        class='flex justify-center gap-6 list-[upper-latin] list-inside text-white'
-      >
-        <li>
-          <button
-            type='button'
-            class='border-b-2 border-b-[#55E6C1] py-2 px-3 text-xl hover:text-[#55E6C1] hover:scale-105 transition-all'
-            >Adam Sandler</button
-          >
-        </li>
-        <li>
-          <button
-            type='button'
-            class='border-b-2 border-b-[#55E6C1] py-2 px-3 text-xl hover:text-[#55E6C1] hover:scale-105 transition-all'
-            >Adam Sandler</button
-          >
-        </li>
-        <li>
-          <button
-            type='button'
-            class='border-b-2 border-b-[#55E6C1] py-2 px-3 text-xl hover:text-[#55E6C1] hover:scale-105 transition-all'
-            >Adam Sandler</button
-          >
-        </li>
-      </ol>
-      <div class='grid place-items-center'>
-        <picture class='w-80 h-80'>
-          <img
-            src='https://i.pravatar.cc/300'
-            alt='Celebrity'
-            class='w-full h-full object-cover border-2 border-[#55E6C1] shadow-2xl rounded cursor-crosshair aspect-square'
-          />
-        </picture>
-      </div>
-      <div class='flex items-center justify-center max-w-2xl m-auto text-lg'>
-        <span class='text-gray-100'>¿Ninguna idea?</span>
-        <button
-          class='text-[#55E6C1] font-bold pl-2 flex items-center gap-1 group'
-        >
-          Dame una pista <IconLightBlub
-            className={'animate-pulse group-hover:animate-bounce transition-all'}
-          />
-        </button>
-        <!-- <p class='text-gray-100'>
-          <span class='text-[#55E6C1] font-bold'>Pista:</span> lorem ipsum dolor
-          sit amet consectetur adipisicing elit. Facere recusandae amet doloremque
-          inventore sint non sapiente facilis soluta modi dolor!
-        </p> -->
-      </div>
-    </div>
+    <GameSection client:load />
   </main>
+  <footer class='fixed bottom-0 right-0 left-0 m-auto py-2'>
+    <p class='text-center text-gray-500 text-sm'>
+      Imágenes pixeladas con <a
+        href='https://cloudinary.com/'
+        target='_blank'
+        rel='noreferer'
+        class='underline'>Cloudinary</a
+      >. Pistas por <a
+        href='https://wikipedia.com/'
+        target='_blank'
+        rel='noreferer'
+        class='underline'>Wikipedia</a
+      >
+    </p>
+    <p class='text-center text-gray-500 text-sm'>
+      Hecho con <a
+        href='https://astro.build/'
+        target='_blank'
+        rel='noreferer'
+        class='underline'>Astro</a
+      > por
+      <a
+        href='https://github.com/joaquinarias989'
+        class='font-bold text-gray-400'
+      >
+        Joaquín Arias 🙍🏽‍♂️
+      </a>
+    </p>
+  </footer>
 </Layout>
