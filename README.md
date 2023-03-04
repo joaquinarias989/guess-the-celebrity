@@ -1,55 +1,46 @@
-# Astro Starter Kit: Basics
+<div align="center">
 
-```
-npm create astro@latest -- --template basics
-```
+<a href="https://adivina-la-celebridad.vercel.app/">
+<img src="./public/banner.png" />
+</a>
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+<p></p>
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![GitHub stars](https://img.shields.io/github/stars/joaquinarias989/guess-the-celebrity)
+![GitHub issues](https://img.shields.io/github/issues/joaquinarias989/guess-the-celebrity)
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+</div>
 
+## 👨‍🚀 Getting Started
 
-## 🚀 Project Structure
+> 🚧 You will need [Nodejs +16 (LTS recommended)](https://nodejs.org/en/) installed.
 
-Inside of your Astro project, you'll see the following folders and files:
+1. Fork this project:
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+- [Click here](https://github.com/joaquinarias989/guess-the-celebrity/fork).
+
+2. Clone the repository:
+
+```bash
+git clone git@github.com:YOU_USER/guess-the-celebrity.git
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+3. Install dependencies:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+npm install
+# or
+pnpm install
+# or
+yarn install
+# or
+ultra install
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+5. Ready 🥳
 
-## 🧞 Commands
+<p></p>
 
-All commands are run from the root of the project, from a terminal:
+## 🎉 Deploy on Vercel
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- ✅ [https://adivina-la-celebridad.vercel.app/](https://adivina-la-celebridad.vercel.app/).
