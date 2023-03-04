@@ -1,16 +1,20 @@
 ---
-import Footer from '../components/Footer.astro';
 import GameSection from '../components/GameSection';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title='Adivina la celebridad'>
-  <header class='text-center mb-6'>
-    <h1 class='text-6xl font-bold text-[#55E6C1]'>Adivina la celebridad</h1>
-  </header>
-  <main class='text-center flex flex-col gap-6'>
-    <p class='text-xl text-gray-100'>¿Quién es la persona de debajo?</p>
-    <GameSection client:load />
-  </main>
-  <Footer />
+  <div
+    class='grid place-content-center min-h-screen 2xl:min-h-0 2xl:flex-1 py-12'
+  >
+    <header class='mb-6'>
+      <h1 class='text-6xl font-bold text-[#55E6C1] text-center'>
+        Adivina la celebridad
+      </h1>
+    </header>
+    <main class='flex flex-col gap-6 text-center'>
+      <p class='text-xl text-gray-100'>¿Quién es la persona de debajo?</p>
+      <GameSection client:load />
+    </main>
+  </div>
 </Layout>
