@@ -69,13 +69,19 @@ export default function GameSection() {
                   pickedOption != null
                     ? (option.isCorrect && optionCorrectClasses) ||
                       (option.name === pickedOption.name && optionErrorClasses)
-                    : 'border-b-[#55E6C1] hover:text-[#55E6C1] hover:scale-105 '
+                    : 'border-b-[#55E6C1] hover:text-[#55E6C1] hover:scale-105'
                 }`}
               >
                 <button
                   type='button'
                   disabled={pickedOption != null}
-                  className={`py-2 px-3`}
+                  className={`py-2 px-3 ${
+                    pickedOption != null
+                      ? option.name === pickedOption.name && !option.isCorrect
+                        ? 'line-through'
+                        : ''
+                      : ''
+                  }`}
                   onClick={() => handlePickOption(option)}
                 >
                   {option.name}
@@ -85,17 +91,55 @@ export default function GameSection() {
           )}
         </ol>
         <div className='grid place-items-center'>
-          <picture className='w-80 h-80'>
+          <picture className='w-full h-full max-w-[20rem] max-h-[20rem] sm:w-80 sm:h-80 relative aspect-square'>
             {loading ? (
               <SkeletonCelebrityImage />
             ) : (
-              <img
-                src={
-                  pickedOption != null ? celebrity?.image : celebrity?.imageBlur
-                }
-                alt={`Celebridad ${celebrity?.name}`}
-                className='w-full h-full object-cover border-2 border-dashed border-[#55E6C1] shadow-2xl rounded cursor-crosshair aspect-square'
-              />
+              <>
+                {pickedOption != null &&
+                  (pickedOption.isCorrect ? (
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth={2.5}
+                      className='absolute inset-0 m-auto w-0 stroke-green-500 animate-answer'
+                    >
+                      <path
+                        strokeLinecap='square'
+                        strokeLinejoin='bevel'
+                        d='M4.5 12.75l6 6 9-13.5'
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      strokeWidth={2.5}
+                      className='absolute inset-0 m-auto w-0 stroke-red-500 animate-answer'
+                    >
+                      <path
+                        strokeLinecap='square'
+                        strokeLinejoin='bevel'
+                        d='M6 18L18 6M6 6l12 12'
+                      />
+                    </svg>
+                  ))}
+                <img
+                  src={
+                    pickedOption != null
+                      ? celebrity?.image
+                      : celebrity?.imageBlur
+                  }
+                  alt={`${
+                    pickedOption != null
+                      ? `Celebridad ${celebrity?.name}`
+                      : `Celebridad ${celebrity?.name} pixelada`
+                  }`}
+                  className='w-full h-full object-cover border-2 border-dashed border-[#55E6C1] shadow-2xl rounded cursor-crosshair aspect-square'
+                />
+              </>
             )}
           </picture>
         </div>
